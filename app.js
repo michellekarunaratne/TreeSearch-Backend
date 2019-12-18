@@ -1,11 +1,26 @@
 const express = require('express');
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const app=express();
 const port=3000;
 
-var plants=require('./routes/routing.js')
+//Database connection
+mongoose.connect('mongodb://localhost:27017/tree-search-db',{useNewUrlParser: true,useUnifiedTopology: true});
 
+mongoose.connection.once('open',function()
+{
+    console.log('Database connection has been made');
+}).on('error',function(error)
+{
+    console.log('Connection error:',error);
+});
+
+//Running the app on port 3000
 app.listen(port,function(){
     console.log(`App is listening on port ${port}`)
 })
 
-app.use('/plants',plants);
+//Mounting the routing module
+var plants=require('./routes/routing.js')
+app.use('/treeSearch',plants);
+

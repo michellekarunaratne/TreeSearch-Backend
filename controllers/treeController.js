@@ -17,4 +17,22 @@ function retrieveAllTrees(){
     return promise
 }
 
+function retrieveTreeResults(filterObject){
+
+    var promise = new Promise(function(resolve,reject){
+        Tree.find(filterObject,function(error,docs){
+            if(error){
+                reject(error)
+            }
+            else{
+                resolve(docs)
+            }
+        })
+    })
+
+    return promise
+
+}
+
+module.exports.retrieveTreeResults=retrieveTreeResults;
 module.exports.retrieveAllTrees=retrieveAllTrees;

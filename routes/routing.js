@@ -12,7 +12,7 @@ router.get('/getAllTrees',jsonencodedParser,function(req,res){
         res.send(docs);
     })
     .catch(function(error){
-        res.send(error)
+        res.status(400).send(error)
     })
     
 })
@@ -23,7 +23,7 @@ router.post('/getFilterTrees',jsonencodedParser,function(req,res){
         res.send(docs)
     })
     .catch(function(error){
-        res.send(error)
+        res.status(400).send(error)
     })
 })
 

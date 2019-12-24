@@ -5,7 +5,7 @@ const app=express();
 const port=3000;
 
 //Database connection
-mongoose.connect('mongodb://localhost:27017/tree-search-db',{useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://driver-1:driver_1@treesearch-of8hf.mongodb.net/treesearch?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true});
 
 mongoose.connection.once('open',function()
 {

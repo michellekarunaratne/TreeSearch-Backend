@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app=express();
 const port=3000;
+const dbString=require('./db-Config');
 
 //Database connection
-mongoose.connect('mongodb+srv://driver-1:driver_1@treesearch-of8hf.mongodb.net/treesearch?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect(dbString.db,{useNewUrlParser: true,useUnifiedTopology: true});
 
 mongoose.connection.once('open',function()
 {

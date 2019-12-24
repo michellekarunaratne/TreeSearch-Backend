@@ -19,6 +19,12 @@ function retrieveAllTrees(){
 
 function retrieveTreeResults(filterObject){
 
+    if(filterObject.has("dbh")){
+
+    }
+    if(filterObject.has("height")){
+
+    }
     var promise = new Promise(function(resolve,reject){
         Tree.find(filterObject,function(error,docs){
             if(error){

@@ -54,7 +54,6 @@ function retrieveTreeResults(filterObject){
                 reject(error)
             }
             else{
-                console.log(docs)
                 resolve(docs)
             }
         })

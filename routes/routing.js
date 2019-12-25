@@ -28,7 +28,6 @@ router.post('/getFilterTrees',jsonencodedParser,function(req,res){
 })
 
 //Shrub routing
-
 const Shrubs=require('../controllers/shrubController')
 
 router.get('/getAllShrubs',jsonencodedParser,function(req,res){
@@ -41,7 +40,7 @@ router.get('/getAllShrubs',jsonencodedParser,function(req,res){
     })
 })
 
-router.post('/getFilterShurbs',jsonencodedParser,function(req,res){
+router.post('/getFilterShrubs',jsonencodedParser,function(req,res){
     Shrubs.retrieveShrubResults(req.body)
     .then(function(docs){
         res.send(docs)

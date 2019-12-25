@@ -18,8 +18,9 @@ function retrieveAllShrubs(){
 }
 
 function retrieveShrubResults(filterObject){
-
+    console.log(filterObject)
    
+
     if("height" in filterObject){
         var queryheight=filterObject.height;
         filterObject["height.0"]={"$lte":queryheight}

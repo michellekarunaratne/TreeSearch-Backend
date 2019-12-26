@@ -8,9 +8,11 @@ var shrubSchema= new Schema(
         common_name :String,
         taxonomic_status :[String],
         tree_size :[String],
-        height :[Number],
+        max_height :Number,
         use :[String],
-        habitat :String 
+        habitat :String,
+        climate:[String],
+        elevation:[String]
     }
 );
 

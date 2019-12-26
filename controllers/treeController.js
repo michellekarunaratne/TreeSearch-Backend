@@ -49,10 +49,17 @@ function retrieveTreeResults(filterObject){
         var querytaxonomic_status=filterObject.taxonomic_status;
         filterObject["taxonomic_status"]={"$in":[querytaxonomic_status]}
     }
+
     if("climate" in filterObject){
         var queryclimate=filterObject.climate;
         filterObject["climate"]={"$in":[queryclimate]} 
     }
+
+    if("elevation" in filterObject){
+        var queryelevation=filterObject.elevation;
+        filterObject["elevation"]={"$in":[queryelevation]} 
+    }
+    
 
     var promise = new Promise(function(resolve,reject){
         Tree.find(filterObject,function(error,docs){

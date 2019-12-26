@@ -24,7 +24,7 @@ function retrieveShrubResults(filterObject){
        // filterObject["height.0"]={"$lte":queryheight}
        // filterObject["height.1"]={"$gte":queryheight}
        // delete filterObject["height"]
-       filterObject["max_height"]={$gte:queryheight[0]}
+       filterObject["$and"]=[{"max_height":{"$gte":queryheight[0]}},{"max_height":{"$lte":queryheight[1]}}]
        delete filterObject["height"]
    }
 

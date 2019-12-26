@@ -18,15 +18,15 @@ function retrieveAllShrubs(){
 }
 
 function retrieveShrubResults(filterObject){
-    console.log(filterObject)
    
-
     if("height" in filterObject){
         var queryheight=filterObject.height;
-        filterObject["height.0"]={"$lte":queryheight}
-        filterObject["height.1"]={"$gte":queryheight}
-        delete filterObject["height"]
-    }
+       // filterObject["height.0"]={"$lte":queryheight}
+       // filterObject["height.1"]={"$gte":queryheight}
+       // delete filterObject["height"]
+       filterObject["max_height"]={$gte:queryheight[0]}
+       delete filterObject["height"]
+   }
 
     if("use" in filterObject){
         var queryuse=filterObject.use;
@@ -41,6 +41,16 @@ function retrieveShrubResults(filterObject){
     if("taxonomic_status" in filterObject){
         var querytaxonomic_status=filterObject.taxonomic_status;
         filterObject["taxonomic_status"]={"$in":[querytaxonomic_status]}
+    }
+
+    if("climate" in filterObject){
+        var queryclimate=filterObject.climate;
+        filterObject["climate"]={"$in":[queryclimate]} 
+    }
+
+    if("elevation" in filterObject){
+        var queryelevation=filterObject.elevation;
+        filterObject["elevation"]={"$in":[queryelevation]} 
     }
 
     var promise = new Promise(function(resolve,reject){

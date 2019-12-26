@@ -21,7 +21,7 @@ function retrieveShrubResults(filterObject){
    
     if("height" in filterObject){
         var queryheight=filterObject.height;
-        filterObject["$and"]=[{"max_height":{"$gte":queryheight[0]}},{"max_height":{"$lte":queryheight[1]}}]
+        filterObject["max_height"]={"$lte":queryheight}
         delete filterObject["height"]
    }
 
@@ -66,5 +66,5 @@ function retrieveShrubResults(filterObject){
 
 }
 
- module.exports.retrieveShrubResults=retrieveShrubResults;
+module.exports.retrieveShrubResults=retrieveShrubResults;
 module.exports.retrieveAllShrubs=retrieveAllShrubs;

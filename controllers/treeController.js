@@ -19,6 +19,7 @@ function retrieveAllTrees(){
 
 function retrieveTreeResults(filterObject){
 
+
     if("diameter" in filterObject){
         var querydbh=filterObject.dbh;
         filterObject["dbh.0"]={"$lte":querydbh}
@@ -28,10 +29,7 @@ function retrieveTreeResults(filterObject){
 
     if("height" in filterObject){
          var queryheight=filterObject.height;
-        // filterObject["height.0"]={"$lte":queryheight}
-        // filterObject["height.1"]={"$gte":queryheight}
-        // delete filterObject["height"]
-        filterObject["max_height"]={$gte:queryheight[0]}
+        filterObject["$and"]=[{"max_height":{"$gte":queryheight[0]}},{"max_height":{"$lte":queryheight[1]}}]
         delete filterObject["height"]
     }
 
@@ -60,7 +58,6 @@ function retrieveTreeResults(filterObject){
         filterObject["elevation"]={"$in":[queryelevation]} 
     }
     
-
     var promise = new Promise(function(resolve,reject){
         Tree.find(filterObject,function(error,docs){
             if(error){

@@ -19,7 +19,7 @@ function retrieveAllTrees(){
 
 function retrieveTreeResults(filterObject){
 
-    if("dbh" in filterObject){
+    if("diameter" in filterObject){
         var querydbh=filterObject.dbh;
         filterObject["dbh.0"]={"$lte":querydbh}
         filterObject["dbh.1"]={"$gte":querydbh}
@@ -27,9 +27,11 @@ function retrieveTreeResults(filterObject){
     }
 
     if("height" in filterObject){
-        var queryheight=filterObject.height;
-        filterObject["height.0"]={"$lte":queryheight}
-        filterObject["height.1"]={"$gte":queryheight}
+         var queryheight=filterObject.height;
+        // filterObject["height.0"]={"$lte":queryheight}
+        // filterObject["height.1"]={"$gte":queryheight}
+        // delete filterObject["height"]
+        filterObject["max_height"]={$gte:queryheight[0]}
         delete filterObject["height"]
     }
 
@@ -46,6 +48,10 @@ function retrieveTreeResults(filterObject){
     if("taxonomic_status" in filterObject){
         var querytaxonomic_status=filterObject.taxonomic_status;
         filterObject["taxonomic_status"]={"$in":[querytaxonomic_status]}
+    }
+    if("climate" in filterObject){
+        var queryclimate=filterObject.climate;
+        filterObject["climate"]={"$in":[queryclimate]} 
     }
 
     var promise = new Promise(function(resolve,reject){

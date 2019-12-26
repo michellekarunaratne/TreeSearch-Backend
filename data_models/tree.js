@@ -8,14 +8,16 @@ var treeSchema= new Schema(
         common_name :String,
         taxonomic_status :[String],
         tree_size :[String],
-        height :[Number],
-        dbh :[Number],
+        max_height :Number,
+        diameter :[Number],
         growth_rate :String,
         use :[String],
         water_preference :String,
         light_preference :String,
         soil :String,
-        habitat :String 
+        habitat :String,
+        climate:[String],
+        elevation:[String]
     }
 );
 

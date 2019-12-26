@@ -4,6 +4,7 @@ const app=express();
 const port=3000;
 const dbString=require('./db-Config');
 
+//Allowing CORS 
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect

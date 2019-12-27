@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const app=express();
+var cors = require('cors')
 const port=process.env.PORT || 3000;
 const dbString=require('./db-Config');
 
@@ -8,7 +9,7 @@ const dbString=require('./db-Config');
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', "*");
+  res.setHeader('Access-Control-Allow-Origin', process.env.ORIGIN || "*");
   
 
   // Request methods you wish to allow

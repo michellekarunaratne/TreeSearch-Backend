@@ -5,6 +5,17 @@ var cors = require('cors')
 const port=process.env.PORT || 3000;
 const dbString=require('./db-Config');
 
+var cors = require('cors');
+
+app.use(
+    cors({
+        credentials: true,
+        origin: true
+    })
+);
+app.options('*', cors());
+
+
 //Allowing CORS 
 app.use(function (req, res, next) {
 

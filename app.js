@@ -3,12 +3,14 @@ const mongoose = require("mongoose");
 const app=express();
 const port=3000;
 const dbString=require('./db-Config');
+const cors = require('cors')
+
 
 //Allowing CORS 
 // app.use(function (req, res, next) {
 
 //     // Website you wish to allow to connect
-//     res.setHeader('Access-Control-Allow-Origin', "*");
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
 
 //     // Request methods you wish to allow
 //     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -23,6 +25,7 @@ const dbString=require('./db-Config');
 //     // Pass to next layer of middleware
 //     next();
 // });
+app.use(cors())
 
 //Database connection
 mongoose.connect(dbString.db,{useNewUrlParser: true,useUnifiedTopology: true});

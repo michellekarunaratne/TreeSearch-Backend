@@ -30,8 +30,8 @@ function retrieveTreeResults(filterObject){
     }
 
     if("suitable_location" in filterObject){
-        var queryelevation=filterObject.elevation;
-        filterObject["suitable_location"]={"$in":[queryelevation]} 
+        var querylocation=filterObject.suitable_location;
+        filterObject["suitable_location"]={"$in":[querylocation]} 
     }
     
     var promise = new Promise(function(resolve,reject){

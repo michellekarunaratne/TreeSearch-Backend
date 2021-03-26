@@ -3,16 +3,20 @@ const Schema =mongoose.Schema;
 
 var shrubSchema= new Schema(
     {
-        family:String,
-        botanical_name :String,
-        common_name :String,
-        taxonomic_status :[String],
-        tree_size :[String],
-        max_height :Number,
-        use :[String],
-        habitat :String,
-        climate:[String],
-        elevation:[String]
+        family: String,
+        botanical_name: String,
+        common_name: String,
+        conservation_status: String,
+        tree_size: [ String ],
+        height: String,
+        diameter: String,
+        climate: [ String ],
+        elevation: String,
+        suitable_location: [ String ],
+        engineering_benefits: String,
+        growth_rate: String,
+        use: String,
+        light: String
     }
 );
 

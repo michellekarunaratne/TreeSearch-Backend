@@ -1,14 +1,14 @@
-const Shrub=require('../data_models/shrub');
+const Shrub = require('../data_models/shrub');
 
-function retrieveAllShrubs(){
+function retrieveAllShrubs() {
 
-    var promise = new Promise(function(resolve,reject){
+    var promise = new Promise(function (resolve, reject) {
 
-        Shrub.find({},function(error,docs){
-            if(error){
+        Shrub.find({}, function (error, docs) {
+            if (error) {
                 reject(error)
             }
-            else{
+            else {
                 resolve(docs)
             }
         })
@@ -17,46 +17,60 @@ function retrieveAllShrubs(){
     return promise
 }
 
-function retrieveShrubResults(filterObject){
-   
-    if("height" in filterObject){
-        var queryheight=filterObject.height;
-        filterObject["max_height"]={"$lte":queryheight}
+function retrieveAllShrubBotNames() {
+    var promise = new Promise(function (resolve, reject) {
+        Shrub.find({}, function (error, docs) {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(docs);
+            }
+        }).select({ '_id': 0, 'botanical_name': 1 });
+    })
+
+    return promise;
+}
+
+function retrieveShrubResults(filterObject) {
+
+    if ("height" in filterObject) {
+        var queryheight = filterObject.height;
+        filterObject["max_height"] = { "$lte": queryheight }
         delete filterObject["height"]
-   }
-
-    if("use" in filterObject){
-        var queryuse=filterObject.use;
-        filterObject["use"]={"$in":[queryuse]}
     }
 
-    if("tree_size" in filterObject){
-        var querytree_size=filterObject.tree_size;
-        filterObject["tree_size"]={"$in":[querytree_size]}
+    if ("use" in filterObject) {
+        var queryuse = filterObject.use;
+        filterObject["use"] = { "$in": [queryuse] }
     }
 
-    if("taxonomic_status" in filterObject){
-        var querytaxonomic_status=filterObject.taxonomic_status;
-        filterObject["taxonomic_status"]={"$in":[querytaxonomic_status]}
+    if ("tree_size" in filterObject) {
+        var querytree_size = filterObject.tree_size;
+        filterObject["tree_size"] = { "$in": [querytree_size] }
     }
 
-    if("climate" in filterObject){
-        var queryclimate=filterObject.climate;
-        filterObject["climate"]={"$in":[queryclimate]} 
+    if ("taxonomic_status" in filterObject) {
+        var querytaxonomic_status = filterObject.taxonomic_status;
+        filterObject["taxonomic_status"] = { "$in": [querytaxonomic_status] }
     }
 
-    if("elevation" in filterObject){
-        var queryelevation=filterObject.elevation;
-        filterObject["elevation"]={"$in":[queryelevation]} 
+    if ("climate" in filterObject) {
+        var queryclimate = filterObject.climate;
+        filterObject["climate"] = { "$in": [queryclimate] }
     }
 
-    var promise = new Promise(function(resolve,reject){
-        Shrub.find(filterObject,function(error,docs){
-            if(error){
+    if ("elevation" in filterObject) {
+        var queryelevation = filterObject.elevation;
+        filterObject["elevation"] = { "$in": [queryelevation] }
+    }
+
+    var promise = new Promise(function (resolve, reject) {
+        Shrub.find(filterObject, function (error, docs) {
+            if (error) {
                 reject(error)
             }
-            else{
-                
+            else {
+
                 resolve(docs)
             }
         })
@@ -66,5 +80,6 @@ function retrieveShrubResults(filterObject){
 
 }
 
-module.exports.retrieveShrubResults=retrieveShrubResults;
-module.exports.retrieveAllShrubs=retrieveAllShrubs;
+module.exports.retrieveShrubResults = retrieveShrubResults;
+module.exports.retrieveAllShrubs = retrieveAllShrubs;
+module.exports.retrieveAllShrubBotNames = retrieveAllShrubBotNames;
